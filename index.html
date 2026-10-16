@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swap Fashion - Sign In</title>
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#B3222A">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Swap Fashion">
 </head>
 <body>
     <div class="phone-container signin-page">
+
         <div class="header-image">
             <img src="ue-building.jpg" alt="University of the East">
         </div>
+
         <div class="content">
             <h1>Sign in</h1>
             <p class="subtitle">Welcome back, Warrior! Enter your details.</p>
+
             <form id="loginForm">
                 <div class="input-group">
                     <i class="fa-regular fa-user icon"></i>
                     <input type="text" id="studentNum" placeholder="Student Number" required>
                 </div>
+
                 <div class="input-group">
                     <i class="fa-regular fa-envelope icon"></i>
                     <input type="email" id="email" placeholder="Your UE Complete Email Address" required>
                 </div>
+
                 <div class="input-group">
                     <i class="fa-solid fa-key icon"></i>
                     <input type="password" id="password" placeholder="Password" required>
@@ -32,20 +49,28 @@
                         <i class="fa-regular fa-eye"></i>
                     </button>
                 </div>
+
                 <div class="options-row">
                     <label class="remember-me">
                         <input type="checkbox"> Remember me
                     </label>
                     <a href="#" class="forgot-link">Forgot password?</a>
                 </div>
+
                 <button type="submit" class="btn-primary">Sign in</button>
             </form>
-            <div class="divider"><span>OR</span></div>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
             <button type="button" class="btn-google" onclick="signInWithGoogle()">
                 <i class="fa-brands fa-google"></i> Sign in with UE Gmail account
             </button>
         </div>
+
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>

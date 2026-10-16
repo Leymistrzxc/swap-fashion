@@ -283,3 +283,14 @@ if (document.querySelector('.inbox-page')) {
         });
     });
 }
+
+// ============================================
+// PWA SERVICE WORKER
+// ============================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/swap-fashion/sw.js')
+            .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+            .catch(err => console.log('❌ Service Worker error:', err));
+    });
+}
