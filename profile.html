@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Fashion - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container profile-page">
+
+        <header class="profile-header">
+            <div class="profile-avatar">W</div>
+            <h1 id="profileName">Warrior</h1>
+            <p>UE Caloocan · Student</p>
+        </header>
+
+        <main class="profile-content">
+
+            <div class="profile-stats">
+                <div class="stat-box">
+                    <i class="fa-solid fa-shirt"></i>
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Items</div>
+                </div>
+                <div class="stat-box">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Swaps</div>
+                </div>
+                <div class="stat-box">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Buys</div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <h3>Profile details</h3>
+                    <a href="#">Edit</a>
+                </div>
+                <div class="profile-row">
+                    <span class="label">Name</span>
+                    <span class="value" id="profileNameRow">Warrior</span>
+                </div>
+                <div class="profile-row">
+                    <span class="label">Student No.</span>
+                    <span class="value">20XX-XXXXX</span>
+                </div>
+                <div class="profile-row">
+                    <span class="label">UE Email</span>
+                    <span class="value" id="profileEmail">—</span>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <h3>My Items</h3>
+                    <a href="#">View</a>
+                </div>
+                <div class="profile-row">
+                    <span class="label">For swapping</span>
+                    <span class="value">0 items</span>
+                </div>
+            </div>
+
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+            </button>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" onclick="alert('Notifications coming soon!'); return false;">
+                <i class="fa-regular fa-bell"></i>
+                <span>Notification</span>
+            </a>
+            <a href="#" class="nav-item nav-add" onclick="alert('Add listing coming soon!'); return false;">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+            <a href="#" class="nav-item" onclick="alert('Inbox coming soon!'); return false;">
+                <i class="fa-regular fa-envelope"></i>
+                <span>Inbox</span>
+            </a>
+            <a href="profile.html" class="nav-item active">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
