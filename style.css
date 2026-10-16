@@ -1,0 +1,200 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* The phone-sized container */
+.phone-container {
+    width: 390px;
+    background-color: #6b0d0d; /* Deep Red */
+    border-radius: 25px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Top image section with curve */
+.header-image {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    /* This mask creates the concave curve at the bottom */
+    -webkit-mask-image: radial-gradient(circle at 50% 0, transparent 0, transparent 100px, black 100px);
+    mask-image: radial-gradient(circle at 50% 0, transparent 0, transparent 100px, black 100px);
+    /* Fallback curve using border-radius if mask isn't perfect */
+    border-bottom-left-radius: 50% 40px;
+    border-bottom-right-radius: 50% 40px;
+}
+
+.header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+}
+
+/* Content area */
+.content {
+    padding: 0 30px 40px;
+    margin-top: -40px; /* Pulls text up slightly under the curve */
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+
+/* Input fields */
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    margin-right: 12px;
+    width: 18px;
+    text-align: center;
+}
+
+.input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 13px;
+    outline: none;
+    font-weight: 400;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.eye-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Remember me / Forgot password */
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin: 15px 0 25px;
+    padding: 0 5px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.remember-me input {
+    accent-color: #6b0d0d; /* Matches the red background */
+    transform: scale(1.1);
+}
+
+.forgot-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+}
+
+/* Main Sign In Button */
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background-color: white;
+    color: #6b0d0d;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #f0f0f0;
+}
+
+/* OR Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.divider span {
+    padding: 0 15px;
+}
+
+/* Google Sign In Button */
+.btn-google {
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.btn-google:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-google i {
+    font-size: 16px;
+}
