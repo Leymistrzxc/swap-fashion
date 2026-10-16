@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Fashion - Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container checkout-page">
+        <header class="checkout-header">
+            <button class="back-btn" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1>Checkout</h1>
+            <button class="clear-btn" onclick="alert('Cleared!');">Clear all</button>
+        </header>
+        <main class="checkout-content">
+            <div class="checkout-card meetup-location">
+                <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="location-info">
+                    <p class="location-label">Meetup location</p>
+                    <h3>University of the East – Caloocan</h3>
+                    <p class="location-hint">Campus meetups only</p>
+                </div>
+            </div>
+            <div class="checkout-card seller-card">
+                <div class="seller-avatar">JD</div>
+                <div class="seller-info">
+                    <p class="seller-label">Meeting with</p>
+                    <h3>Juan Dela Cruz</h3>
+                    <p class="seller-meta"><span class="star">★</span> 4.8 · UE Caloocan student</p>
+                </div>
+                <button class="message-btn">Message</button>
+            </div>
+            <div class="checkout-card items-card">
+                <h3 class="card-title">Your items</h3>
+                <div class="checkout-item">
+                    <div class="checkout-item-img"><i class="fa-solid fa-shirt"></i></div>
+                    <div class="checkout-item-info"><h4>Black Blazer</h4><p>Formal · Size M</p></div>
+                    <p class="checkout-item-price">₱350</p>
+                </div>
+                <div class="checkout-item">
+                    <div class="checkout-item-img"><i class="fa-solid fa-person-dress"></i></div>
+                    <div class="checkout-item-info"><h4>Pleated Skirt</h4><p>Semi-formal · Size S</p></div>
+                    <p class="checkout-item-price">₱220</p>
+                </div>
+                <div class="checkout-item">
+                    <div class="checkout-item-img"><i class="fa-solid fa-shirt"></i></div>
+                    <div class="checkout-item-info"><h4>Barong Tagalog</h4><p>Formal · Size L</p></div>
+                    <p class="checkout-item-price">₱480</p>
+                </div>
+            </div>
+            <div class="checkout-card schedule-card">
+                <h3 class="card-title">Meetup schedule</h3>
+                <p class="card-subtitle">Pick when you'll meet the seller to get your items.</p>
+                <p class="schedule-label">Date · October 2026</p>
+                <div class="date-row">
+                    <button class="date-btn" onclick="selectDate(this)"><span>Mon</span><strong>19</strong></button>
+                    <button class="date-btn active" onclick="selectDate(this)"><span>Tue</span><strong>20</strong></button>
+                    <button class="date-btn" onclick="selectDate(this)"><span>Wed</span><strong>21</strong></button>
+                    <button class="date-btn" onclick="selectDate(this)"><span>Thu</span><strong>22</strong></button>
+                    <button class="date-btn" onclick="selectDate(this)"><span>Fri</span><strong>23</strong></button>
+                </div>
+                <p class="schedule-label">Time</p>
+                <div class="time-grid">
+                    <button class="time-btn" onclick="selectTime(this)">9:00 AM</button>
+                    <button class="time-btn" onclick="selectTime(this)">10:30 AM</button>
+                    <button class="time-btn disabled" disabled>12:00 PM</button>
+                    <button class="time-btn active" onclick="selectTime(this)">1:00 PM</button>
+                    <button class="time-btn" onclick="selectTime(this)">3:00 PM</button>
+                    <button class="time-btn" onclick="selectTime(this)">4:30 PM</button>
+                </div>
+                <div class="schedule-summary">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span id="scheduleText">Tue, Oct 20 · 1:00 PM · UE Caloocan</span>
+                </div>
+            </div>
+            <div class="checkout-card summary-final">
+                <div class="summary-line"><span>Subtotal (3 items)</span><span>₱1,050</span></div>
+                <div class="summary-line"><span>Campus meetup</span><span class="free">Free</span></div>
+                <div class="summary-line total"><span>Total</span><span class="total-price">₱1,050</span></div>
+            </div>
+        </main>
+        <div class="checkout-bottom-bar">
+            <div class="bottom-info">
+                <span class="bottom-label">Total</span>
+                <span class="bottom-total">₱1,050</span>
+            </div>
+            <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

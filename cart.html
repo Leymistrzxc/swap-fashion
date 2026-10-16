@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Fashion - My Cart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container cart-page">
+        <header class="cart-header">
+            <button class="back-btn" onclick="window.location.href='home.html'">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1>My Cart</h1>
+            <button class="clear-btn" onclick="clearCart()">Clear all</button>
+        </header>
+        <main class="cart-content">
+            <div class="cart-list" id="cartList">
+                <div class="cart-item">
+                    <div class="cart-item-img"><i class="fa-solid fa-shirt"></i></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-top">
+                            <h3>Black Blazer</h3>
+                            <button class="delete-btn" onclick="removeItem(this)"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                        <p class="cart-item-meta">Formal · Size M</p>
+                        <span class="cart-item-tag">Buy or swap</span>
+                        <p class="cart-item-price">₱350</p>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="cart-item-img"><i class="fa-solid fa-person-dress"></i></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-top">
+                            <h3>Pleated Skirt</h3>
+                            <button class="delete-btn" onclick="removeItem(this)"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                        <p class="cart-item-meta">Semi-formal · Size S</p>
+                        <span class="cart-item-tag">Buy or swap</span>
+                        <p class="cart-item-price">₱220</p>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <div class="cart-item-img"><i class="fa-solid fa-shirt"></i></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-top">
+                            <h3>Barong Tagalog</h3>
+                            <button class="delete-btn" onclick="removeItem(this)"><i class="fa-regular fa-trash-can"></i></button>
+                        </div>
+                        <p class="cart-item-meta">Formal · Size L</p>
+                        <span class="cart-item-tag">Buy or swap</span>
+                        <p class="cart-item-price">₱480</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-mode">
+                <h2>Mode of checkout</h2>
+                <div class="mode-toggle">
+                    <button class="mode-btn" onclick="setMode('purchase')" id="modePurchase">
+                        <i class="fa-solid fa-bag-shopping"></i> Purchase
+                    </button>
+                    <button class="mode-btn active" onclick="setMode('swap')" id="modeSwap">
+                        <i class="fa-solid fa-arrows-rotate"></i> Swap
+                    </button>
+                </div>
+                <p class="mode-hint" id="modeHint">Offer one of your own items. The owner will accept or decline.</p>
+            </div>
+
+            <div class="offer-box" id="offerBox" onclick="alert('Upload your item — coming soon!')">
+                <div class="offer-plus"><i class="fa-solid fa-plus"></i></div>
+                <h3>Offer an item/s</h3>
+                <p>Choose what you want to swap for these <span id="itemCountText">3</span> items</p>
+            </div>
+
+            <div class="order-summary" id="orderSummary" style="display: none;">
+                <div class="summary-card">
+                    <div class="summary-row">
+                        <span>Subtotal (<span id="summaryCount">3</span> items)</span>
+                        <span id="summarySubtotal">₱1,050</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span>₱0</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span class="total-price" id="summaryTotal">₱1,050</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="checkout-bar">
+            <div class="checkout-info">
+                <span class="checkout-label" id="barLabel">Items</span>
+                <span class="checkout-count" id="barCount">3 items</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="continueToSwap()">Continue to swap</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

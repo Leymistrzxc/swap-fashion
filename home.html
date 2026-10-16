@@ -10,15 +10,13 @@
 </head>
 <body>
     <div class="phone-container home-page">
-
-        <!-- Header -->
         <header class="home-header">
             <div class="header-top">
                 <div>
                     <p class="greeting">Hello, <span id="userName">Warrior</span></p>
                     <h1 class="home-title">Find your next fit</h1>
                 </div>
-                <button class="cart-btn" onclick="alert('Cart coming soon!')">
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge">2</span>
                 </button>
@@ -28,129 +26,66 @@
                 <input type="text" placeholder="Search clothes on campus">
             </div>
         </header>
-
-        <!-- Main content -->
         <main class="home-content">
-
-            <!-- Banner -->
             <div class="banner">
                 <h3>Swap or buy pre-loved</h3>
                 <p>UE students only</p>
                 <button class="banner-btn">Explore</button>
             </div>
-
-            <!-- Categories -->
             <section class="section">
                 <div class="section-header">
                     <h2>Category</h2>
                     <a href="#" class="see-all">See all</a>
                 </div>
                 <div class="categories">
-                    <div class="category active">
-                        <i class="fa-solid fa-shirt"></i>
-                        <span>Formal</span>
-                    </div>
-                    <div class="category">
-                        <i class="fa-solid fa-tshirt"></i>
-                        <span>Casual</span>
-                    </div>
-                    <div class="category">
-                        <i class="fa-solid fa-mask"></i>
-                        <span>Cosplay</span>
-                    </div>
-                    <div class="category">
-                        <i class="fa-solid fa-dumbbell"></i>
-                        <span>Sports</span>
-                    </div>
-                    <div class="category add-new">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>Add</span>
-                    </div>
+                    <div class="category active"><i class="fa-solid fa-shirt"></i><span>Formal</span></div>
+                    <div class="category"><i class="fa-solid fa-tshirt"></i><span>Casual</span></div>
+                    <div class="category"><i class="fa-solid fa-mask"></i><span>Cosplay</span></div>
+                    <div class="category"><i class="fa-solid fa-dumbbell"></i><span>Sports</span></div>
+                    <div class="category add-new"><i class="fa-solid fa-plus"></i><span>Add</span></div>
                 </div>
             </section>
-
-            <!-- Fresh picks -->
             <section class="section">
                 <div class="section-header">
                     <h2>Fresh picks for you</h2>
                     <a href="#" class="see-all">See all</a>
                 </div>
                 <div class="items-grid">
-
-                    <!-- Item 1 -->
                     <div class="item-card">
-                        <div class="item-img">
-                            <span class="badge buy">Buy</span>
-                            <i class="fa-solid fa-shirt item-icon"></i>
-                        </div>
+                        <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Black Blazer</h3>
                         <p class="item-meta">Formal · Size M</p>
                         <p class="item-price">₱350</p>
                     </div>
-
-                    <!-- Item 2 -->
                     <div class="item-card">
-                        <div class="item-img">
-                            <span class="badge swap">Swap</span>
-                            <i class="fa-solid fa-shirt item-icon"></i>
-                        </div>
+                        <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Barong Tagalog</h3>
                         <p class="item-meta">Formal · Size L</p>
                         <p class="item-price swap-text">Open to swap</p>
                     </div>
-
-                    <!-- Item 3 -->
                     <div class="item-card">
-                        <div class="item-img">
-                            <span class="badge buy">Buy</span>
-                            <i class="fa-solid fa-person-dress item-icon"></i>
-                        </div>
+                        <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-person-dress item-icon"></i></div>
                         <h3>Pleated Skirt</h3>
                         <p class="item-meta">Semi-formal · Size S</p>
                         <p class="item-price">₱220</p>
                     </div>
-
-                    <!-- Item 4 -->
                     <div class="item-card">
-                        <div class="item-img">
-                            <span class="badge swap">Swap</span>
-                            <i class="fa-solid fa-shirt item-icon"></i>
-                        </div>
+                        <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Basketball Jersey</h3>
                         <p class="item-meta">Sportswear · Size L</p>
                         <p class="item-price swap-text">Open to swap</p>
                     </div>
-
                 </div>
             </section>
-
         </main>
-
-        <!-- Bottom Navigation -->
         <nav class="bottom-nav">
-            <a href="home.html" class="nav-item active">
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
-            </a>
-            <a href="#" class="nav-item" onclick="alert('Notifications coming soon!'); return false;">
-                <i class="fa-regular fa-bell"></i>
-                <span>Notification</span>
-            </a>
-            <a href="#" class="nav-item nav-add" onclick="alert('Add listing coming soon!'); return false;">
-                <i class="fa-solid fa-plus"></i>
-            </a>
-            <a href="#" class="nav-item" onclick="alert('Inbox coming soon!'); return false;">
-                <i class="fa-regular fa-envelope"></i>
-                <span>Inbox</span>
-            </a>
-            <a href="profile.html" class="nav-item">
-                <i class="fa-regular fa-user"></i>
-                <span>Profile</span>
-            </a>
+            <a href="home.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="notifications.html" class="nav-item"><i class="fa-regular fa-bell"></i><span>Notification</span></a>
+            <a href="#" class="nav-item nav-add" onclick="alert('Add listing coming soon!'); return false;"><i class="fa-solid fa-plus"></i></a>
+            <a href="inbox.html" class="nav-item"><i class="fa-regular fa-envelope"></i><span>Inbox</span></a>
+            <a href="profile.html" class="nav-item"><i class="fa-regular fa-user"></i><span>Profile</span></a>
         </nav>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>
