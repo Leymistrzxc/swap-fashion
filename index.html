@@ -11,7 +11,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Link to your CSS file -->
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,8 +21,6 @@
         <!-- Top Image Section -->
         <div class="header-image">
             <img src="ue-building.jpg" alt="University of the East">
-            <!-- This creates the inward curve at the bottom of the image -->
-            <div class="curve-overlay"></div>
         </div>
 
         <!-- Content Section -->
@@ -33,19 +31,16 @@
             <!-- The Form -->
             <form id="loginForm">
                 
-                <!-- Student Number -->
                 <div class="input-group">
                     <i class="fa-regular fa-user icon"></i>
                     <input type="text" id="studentNum" placeholder="Student Number" required>
                 </div>
 
-                <!-- Email -->
                 <div class="input-group">
                     <i class="fa-regular fa-envelope icon"></i>
                     <input type="email" id="email" placeholder="Your UE Complete Email Address" required>
                 </div>
 
-                <!-- Password -->
                 <div class="input-group">
                     <i class="fa-solid fa-key icon"></i>
                     <input type="password" id="password" placeholder="Password" required>
@@ -54,7 +49,6 @@
                     </button>
                 </div>
 
-                <!-- Remember Me & Forgot Password -->
                 <div class="options-row">
                     <label class="remember-me">
                         <input type="checkbox"> Remember me
@@ -62,16 +56,13 @@
                     <a href="#" class="forgot-link">Forgot password?</a>
                 </div>
 
-                <!-- Sign In Button -->
                 <button type="submit" class="btn-primary">Sign in</button>
             </form>
 
-            <!-- OR Divider -->
             <div class="divider">
                 <span>OR</span>
             </div>
 
-            <!-- Google Sign In Button -->
             <button type="button" class="btn-google" onclick="signInWithGoogle()">
                 <i class="fa-brands fa-google"></i> Sign in with UE Gmail account
             </button>
@@ -79,7 +70,10 @@
         </div>
     </div>
 
-    <!-- Link to your JavaScript file -->
+    <!-- Supabase Library (MUST come before app.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Your app logic -->
     <script src="app.js"></script>
 </body>
 </html>

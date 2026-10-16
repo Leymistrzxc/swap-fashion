@@ -1,41 +1,51 @@
-/* style.css */
+/* ============================================
+   SWAP FASHION - Sign In Page
+   ============================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
     background-color: #1a1a1a;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
 }
 
-/* The phone-sized container */
 .phone-container {
-    width: 390px;
-    background-color: #6b0d0d; /* Deep Red */
-    border-radius: 25px;
-    overflow: hidden;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     position: relative;
+    width: 100%;
+    max-width: 412px;
+    min-height: 100vh;
+    overflow: hidden;
+    
+    background: linear-gradient(
+        180deg,
+        #AC2027 0%,
+        #A61E25 29%,
+        #9A1B22 37%,
+        #8C171E 48%,
+        #7F131B 58%,
+        #721017 69%,
+        #660C14 79%,
+        #5A0911 89%,
+        #4E060E 100%
+    );
+    
+    color: #FFFFFF;
 }
 
-/* Top image section with curve */
 .header-image {
-    width: 100%;
-    height: 280px;
     position: relative;
-    /* This mask creates the concave curve at the bottom */
-    -webkit-mask-image: radial-gradient(circle at 50% 0, transparent 0, transparent 100px, black 100px);
-    mask-image: radial-gradient(circle at 50% 0, transparent 0, transparent 100px, black 100px);
-    /* Fallback curve using border-radius if mask isn't perfect */
-    border-bottom-left-radius: 50% 40px;
-    border-bottom-right-radius: 50% 40px;
+    width: 100%;
+    height: 316px;
+    overflow: hidden;
+    border-radius: 0 0 48px 48px;
 }
 
 .header-image img {
@@ -45,156 +55,208 @@ body {
     opacity: 0.85;
 }
 
-/* Content area */
+.header-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(169, 27, 13, 0.3) 0%, rgba(169, 27, 13, 0.85) 100%);
+    border-radius: 0 0 48px 48px;
+    pointer-events: none;
+}
+
 .content {
-    padding: 0 30px 40px;
-    margin-top: -40px; /* Pulls text up slightly under the curve */
-    position: relative;
-    z-index: 2;
+    padding: 30px 28.5px 40px;
 }
 
 h1 {
     font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 5px;
+    font-weight: 700;
+    line-height: 45px;
+    margin-bottom: 4px;
 }
 
 .subtitle {
-    font-size: 13px;
-    font-weight: 300;
-    opacity: 0.85;
-    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.84);
+    margin-bottom: 36px;
 }
 
-/* Input fields */
 .input-group {
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 15px 18px;
+    margin-bottom: 17px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.input-group:focus-within {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.7);
 }
 
 .icon {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 16px;
-    margin-right: 12px;
-    width: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    width: 20px;
     text-align: center;
+    margin-right: 14px;
 }
 
 .input-group input {
     flex: 1;
     background: transparent;
     border: none;
-    color: white;
-    font-size: 13px;
-    outline: none;
+    color: #FFFFFF;
+    font-size: 14px;
     font-weight: 400;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 .input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .eye-btn {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
+    padding: 0 4px;
 }
 
-/* Remember me / Forgot password */
 .options-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    margin: 15px 0 25px;
-    padding: 0 5px;
+    font-size: 13px;
+    margin: 12px 0 24px;
+    padding: 0 4px;
 }
 
 .remember-me {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.88);
 }
 
-.remember-me input {
-    accent-color: #6b0d0d; /* Matches the red background */
-    transform: scale(1.1);
+.remember-me input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border: 2px solid #A51C10;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.remember-me input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: -5px;
+    left: 1px;
+    color: #A51C10;
+    font-size: 14px;
+    font-weight: 900;
 }
 
 .forgot-link {
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 13px;
 }
 
-/* Main Sign In Button */
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
 .btn-primary {
     width: 100%;
     padding: 16px;
-    background-color: white;
-    color: #6b0d0d;
-    font-weight: 600;
+    background: #FFFFFF;
+    color: #A51C10;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     font-size: 15px;
+    line-height: 22px;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: transform 0.15s, background-color 0.2s;
 }
 
 .btn-primary:hover {
-    background-color: #f0f0f0;
+    background: #F5F5F5;
 }
 
-/* OR Divider */
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
 .divider {
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 25px 0;
+    margin: 22px 0;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
 }
 
-.divider::before, .divider::after {
+.divider::before,
+.divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.43);
 }
 
 .divider span {
-    padding: 0 15px;
+    padding: 0 14px;
 }
 
-/* Google Sign In Button */
 .btn-google {
     width: 100%;
-    padding: 14px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
+    padding: 15px;
+    background: transparent;
+    color: #FFFFFF;
+    border: 1.5px solid #FFFFFF;
+    border-radius: 10px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-weight: 500;
+    font-weight: 400;
+    transition: background-color 0.2s;
 }
 
 .btn-google:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .btn-google i {
-    font-size: 16px;
+    font-size: 15px;
+}
+
+@media (max-width: 380px) {
+    h1 { font-size: 26px; }
+    .subtitle { font-size: 13px; }
+    .header-image { height: 260px; }
+    .content { padding: 24px 22px 32px; }
 }

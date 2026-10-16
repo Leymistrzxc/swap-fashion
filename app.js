@@ -3,16 +3,16 @@
 // Connected to Supabase
 // ============================================
 
-// ⚠️ PASTE YOUR OWN VALUES HERE
+// ⚠️ REPLACE THESE WITH YOUR ACTUAL VALUES FROM SUPABASE
 const SUPABASE_URL = 'https://nqxsktmultyevshibntr.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_Esafz...'; // ← Paste the full key from Supabase
+const SUPABASE_ANON_KEY = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
 
 // Connect to Supabase
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ============================================
-// Toggle password visibility (eye icon)
+// Toggle password visibility
 // ============================================
 function togglePassword() {
     const passwordInput = document.getElementById('password');
@@ -39,11 +39,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const password = document.getElementById('password').value;
     const submitBtn = document.querySelector('.btn-primary');
     
-    // Show loading state
     submitBtn.textContent = 'Signing in...';
     submitBtn.disabled = true;
     
-    // Call Supabase
     const { data, error } = await db.auth.signInWithPassword({
         email: email,
         password: password
@@ -56,31 +54,20 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         alert('Login failed: ' + error.message);
         console.error(error);
     } else {
-        // Success!
         alert('Welcome back, Warrior!');
         localStorage.setItem('user', JSON.stringify(data.user));
-        // window.location.href = 'home.html'; // Uncomment when home.html exists
     }
 });
 
 // ============================================
-// Handle Google / UE Gmail Sign In
+// Google Sign In (disabled for now)
 // ============================================
 async function signInWithGoogle() {
-    const { data, error } = await db.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-            redirectTo: window.location.origin + '/index.html'
-        }
-    });
-    
-    if (error) {
-        alert('Google sign-in failed: ' + error.message);
-    }
+    alert('Google Sign-In is coming soon! Please use email login for now.');
 }
 
 // ============================================
-// Sign Out (for later pages)
+// Sign Out
 // ============================================
 async function signOut() {
     await db.auth.signOut();
