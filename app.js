@@ -5,7 +5,7 @@
 
 // ⚠️ REPLACE THESE WITH YOUR ACTUAL VALUES FROM SUPABASE
 const SUPABASE_URL = 'https://nqxsktmultyevshibntr.supabase.co';
-const SUPABASE_ANON_KEY = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE';
+const SUPABASE_ANON_KEY = 'sb_publishable_EsafzasmBHFH6VSbsVY8Vw_HIfubHAo';
 
 // Connect to Supabase
 const { createClient } = supabase;
