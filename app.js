@@ -502,4 +502,72 @@ if ('serviceWorker' in navigator) {
             .then(reg => console.log('✅ Service Worker registered:', reg.scope))
             .catch(err => console.log('❌ Service Worker error:', err));
     });
+    
+}
+
+// ============================================
+// CATEGORY PAGE LOGIC
+// ============================================
+if (document.querySelector('.category-page')) {
+    (async () => {
+        const { data: { session } } = await db.auth.getSession();
+        if (!session) { window.location.href = 'index.html'; return; }
+    })();
+
+    // 1. Get the category from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('cat') || 'formal';
+
+    // 2. Set the title
+    const titleEl = document.getElementById('categoryTitle');
+    const titles = {
+        'formal': 'Formal Attire',
+        'casual': 'Casual Wear',
+        'cosplay': 'Cosplay',
+        'sports': 'Sportswear'
+    };
+    titleEl.textContent = titles[category] || 'Items';
+
+    // 3. Demo Data (Matches your Figma exactly)
+    const allItems = [
+        { name: 'Black Blazer', price: '350', type: 'buy', cat: 'formal', size: 'Size M' },
+        { name: 'Barong Tagalog', price: '', type: 'swap', cat: 'formal', size: 'Size L' },
+        { name: 'Pleated Skirt', price: '220', type: 'buy', cat: 'formal', size: 'Size S' },
+        { name: 'Basketball Jersey', price: '', type: 'swap', cat: 'sports', size: 'Size L' },
+        { name: 'Vintage Denim Jacket', price: '500', type: 'buy', cat: 'casual', size: 'Size M' },
+        { name: 'Anime Cosplay Wig', price: '', type: 'swap', cat: 'cosplay', size: 'One Size' }
+    ];
+
+    // 4. Filter items by the chosen category
+    const filteredItems = allItems.filter(item => item.cat === category);
+
+    // 5. Create HTML for each item and add to grid
+    const grid = document.getElementById('categoryGrid');
+    
+    if (filteredItems.length === 0) {
+        grid.innerHTML = '<p style="text-align:center; color:#7A5A5A; grid-column: 1/-1; margin-top: 20px;">No items found in this category yet.</p>';
+    } else {
+        filteredItems.forEach(item => {
+            const badgeClass = item.type === 'buy' ? 'buy' : 'swap';
+            const badgeText = item.type === 'buy' ? 'Buy' : 'Swap';
+            const priceText = item.type === 'buy' ? `₱${item.price}` : 'Open to swap';
+            const priceClass = item.type === 'buy' ? 'item-price' : 'item-price swap-text';
+
+            // Generate the details link
+            const link = `item-details.html?name=${encodeURIComponent(item.name)}&price=${item.price}&type=${item.type}`;
+
+            const cardHTML = `
+                <div class="item-card" onclick="window.location.href='${link}'">
+                    <div class="item-img">
+                        <span class="badge ${badgeClass}">${badgeText}</span>
+                        <i class="fa-solid fa-shirt item-icon"></i>
+                    </div>
+                    <h3>${item.name}</h3>
+                    <p class="item-meta">${category.charAt(0).toUpperCase() + category.slice(1)} · ${item.size}</p>
+                    <p class="${priceClass}">${priceText}</p>
+                </div>
+            `;
+            grid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
 }

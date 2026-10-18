@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Fashion - Category</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#B3222A">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="phone-container category-page">
+
+        <!-- Header -->
+        <header class="category-header">
+            <button class="back-btn" onclick="window.location.href='home.html'">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1 id="categoryTitle">Formal Attire</h1>
+            <div style="width: 40px;"></div>
+        </header>
+
+        <main class="category-content">
+            <div class="items-grid" id="categoryGrid">
+                <!-- Items will be injected here by JavaScript based on the category clicked -->
+            </div>
+        </main>
+
+        <!-- Bottom Nav -->
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="notifications.html" class="nav-item"><i class="fa-regular fa-bell"></i><span>Notification</span></a>
+            <a href="add-listing.html" class="nav-item nav-add"><i class="fa-solid fa-plus"></i></a>
+            <a href="inbox.html" class="nav-item"><i class="fa-regular fa-envelope"></i><span>Inbox</span></a>
+            <a href="profile.html" class="nav-item"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

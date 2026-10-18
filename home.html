@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swap Fashion - Home</title>
+    <link rel="icon" type="image/png" href="icon-192.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -14,7 +15,6 @@
 </head>
 <body>
     <div class="phone-container home-page">
-
         <header class="home-header">
             <div class="header-top">
                 <div>
@@ -45,11 +45,21 @@
                     <a href="#" class="see-all">See all</a>
                 </div>
                 <div class="categories">
-                    <div class="category active"><i class="fa-solid fa-shirt"></i><span>Formal</span></div>
-                    <div class="category"><i class="fa-solid fa-tshirt"></i><span>Casual</span></div>
-                    <div class="category"><i class="fa-solid fa-mask"></i><span>Cosplay</span></div>
-                    <div class="category"><i class="fa-solid fa-dumbbell"></i><span>Sports</span></div>
-                    <div class="category add-new"><i class="fa-solid fa-plus"></i><span>Add</span></div>
+                    <div class="category active" onclick="window.location.href='category.html?cat=formal'">
+                        <i class="fa-solid fa-shirt"></i><span>Formal</span>
+                    </div>
+                    <div class="category" onclick="window.location.href='category.html?cat=casual'">
+                        <i class="fa-solid fa-tshirt"></i><span>Casual</span>
+                    </div>
+                    <div class="category" onclick="window.location.href='category.html?cat=cosplay'">
+                        <i class="fa-solid fa-mask"></i><span>Cosplay</span>
+                    </div>
+                    <div class="category" onclick="window.location.href='category.html?cat=sports'">
+                        <i class="fa-solid fa-dumbbell"></i><span>Sports</span>
+                    </div>
+                    <div class="category add-new" onclick="window.location.href='add-listing.html'">
+                        <i class="fa-solid fa-plus"></i><span>Add</span>
+                    </div>
                 </div>
             </section>
 
@@ -58,7 +68,6 @@
                     <h2>Fresh picks for you</h2>
                     <a href="#" class="see-all">See all</a>
                 </div>
-                
                 <div class="items-grid">
                     <div class="item-card" onclick="window.location.href='item-details.html?name=Black%20Blazer&price=350&type=buy'">
                         <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-shirt item-icon"></i></div>
@@ -66,21 +75,18 @@
                         <p class="item-meta">Formal · Size M</p>
                         <p class="item-price">₱350</p>
                     </div>
-                    
                     <div class="item-card" onclick="window.location.href='item-details.html?name=Barong%20Tagalog&type=swap'">
                         <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Barong Tagalog</h3>
                         <p class="item-meta">Formal · Size L</p>
                         <p class="item-price swap-text">Open to swap</p>
                     </div>
-                    
                     <div class="item-card" onclick="window.location.href='item-details.html?name=Pleated%20Skirt&price=220&type=buy'">
                         <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-person-dress item-icon"></i></div>
                         <h3>Pleated Skirt</h3>
                         <p class="item-meta">Semi-formal · Size S</p>
                         <p class="item-price">₱220</p>
                     </div>
-                    
                     <div class="item-card" onclick="window.location.href='item-details.html?name=Basketball%20Jersey&type=swap'">
                         <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Basketball Jersey</h3>
@@ -99,7 +105,6 @@
             <a href="profile.html" class="nav-item"><i class="fa-regular fa-user"></i><span>Profile</span></a>
         </nav>
     </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>

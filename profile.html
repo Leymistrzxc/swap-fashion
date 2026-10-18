@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swap Fashion - Profile</title>
+    <link rel="icon" type="image/png" href="icon-192.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#B3222A">
     <link rel="apple-touch-icon" href="icon-192.png">
@@ -15,32 +15,65 @@
 <body>
     <div class="phone-container profile-page">
         <header class="profile-header">
-            <div class="profile-avatar">W</div>
-            <h1 id="profileName">Warrior</h1>
-            <p>UE Caloocan · Student</p>
+            <div class="profile-header-top">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-header-info">
+                    <h1 id="profileName">Juan Dela Cruz</h1>
+                    <p>UE Caloocan · Student</p>
+                </div>
+                <button class="cart-btn" onclick="window.location.href='cart.html'">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </button>
+            </div>
         </header>
+
         <main class="profile-content">
-            <div class="profile-stats">
-                <div class="stat-box"><i class="fa-solid fa-shirt"></i><div class="stat-num">0</div><div class="stat-label">Items</div></div>
-                <div class="stat-box"><i class="fa-solid fa-arrows-rotate"></i><div class="stat-num">0</div><div class="stat-label">Swaps</div></div>
-                <div class="stat-box"><i class="fa-solid fa-bag-shopping"></i><div class="stat-num">0</div><div class="stat-label">Buys</div></div>
-            </div>
             <div class="profile-card">
-                <div class="profile-card-header"><h3>Profile details</h3><a href="#">Edit</a></div>
-                <div class="profile-row"><span class="label">Name</span><span class="value" id="profileNameRow">Warrior</span></div>
+                <div class="card-header">
+                    <h3>My Purchases</h3>
+                    <a href="#">View History <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></a>
+                </div>
+                <div class="stats-grid stats-grid-3">
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-regular fa-clock"></i></div><span>To Meet</span></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-solid fa-wallet"></i></div><span>To Pay</span></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-regular fa-circle-check"></i></div><span>Completed</span></div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <h3>My Swaps</h3>
+                    <a href="#">View History <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></a>
+                </div>
+                <div class="stats-grid stats-grid-4">
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-solid fa-arrows-rotate"></i></div><span>Offered</span></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-solid fa-people-group"></i></div><span>To Meet</span></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-regular fa-circle-xmark"></i></div><span>Declined</span></div>
+                    <div class="stat-item"><div class="stat-icon"><i class="fa-regular fa-circle-check"></i></div><span>Completed</span></div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <h3>Profile details</h3>
+                    <a href="#" style="color: #A61B14;">Edit</a>
+                </div>
+                <div class="profile-row"><span class="label">Name</span><span class="value" id="profileNameRow">Juan Dela Cruz</span></div>
                 <div class="profile-row"><span class="label">Student No.</span><span class="value">20XX-XXXXX</span></div>
-                <div class="profile-row"><span class="label">UE Email</span><span class="value" id="profileEmail">—</span></div>
+                <div class="profile-row"><span class="label">UE Email</span><span class="value" id="profileEmail">name@ue.edu.ph</span></div>
             </div>
-            <div class="profile-card">
-                <div class="profile-card-header"><h3>My Items</h3><a href="#">View</a></div>
-                <div class="profile-row"><span class="label">For swapping</span><span class="value">0 items</span></div>
+
+            <div class="my-items-btn" onclick="alert('My Items page coming soon!')">
+                <div class="my-items-left"><i class="fa-solid fa-shirt"></i><span>My Items</span></div>
+                <div class="my-items-right"><span>For swapping</span><i class="fa-solid fa-chevron-right" style="font-size:12px;"></i></div>
             </div>
-            <button class="logout-btn" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+
+            <button class="logout-btn" id="logoutBtn">Log out</button>
         </main>
+
         <nav class="bottom-nav">
             <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
             <a href="notifications.html" class="nav-item"><i class="fa-regular fa-bell"></i><span>Notification</span></a>
-            <!-- The fixed + button -->
             <a href="add-listing.html" class="nav-item nav-add"><i class="fa-solid fa-plus"></i></a>
             <a href="inbox.html" class="nav-item"><i class="fa-regular fa-envelope"></i><span>Inbox</span></a>
             <a href="profile.html" class="nav-item active"><i class="fa-regular fa-user"></i><span>Profile</span></a>
