@@ -6,7 +6,7 @@ const SUPABASE_URL = 'https://nqxsktmultyevshibntr.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_EsafzasmBHFH6VSbsVY8Vw_HIfubHAo';
 
 // ⚠️ PASTE YOUR ACTUAL GOOGLE CLIENT ID HERE
-const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '444991159606-botttmmgjoa91thjj0tovshj8o957ko2.apps.googleusercontent.com';
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
