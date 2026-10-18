@@ -14,20 +14,120 @@
 </head>
 <body>
     <div class="phone-container inbox-page">
+        
+        <!-- INBOX LIST VIEW -->
         <div id="inboxListView">
-            <header class="inbox-header"><h1>Inbox</h1></header>
-            <div class="inbox-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search messages"></div>
-            <div class="inbox-filters">
-                <button class="filter-btn active">All</button><button class="filter-btn">Purchases</button><button class="filter-btn">Swaps</button>
+            <header class="inbox-header">
+                <h1>Inbox</h1>
+            </header>
+
+            <div class="inbox-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search messages">
             </div>
+
+            <div class="inbox-filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Purchases</button>
+                <button class="filter-btn">Swaps</button>
+            </div>
+
             <main class="inbox-content">
+                <!-- Pinned Notifications -->
                 <div class="pinned-notif" onclick="window.location.href='notifications.html'">
                     <div class="pinned-icon"><i class="fa-regular fa-bell"></i></div>
-                    <div class="pinned-text"><h3>Notifications</h3><p>Offers, meetups and order updates</p></div>
+                    <div class="pinned-text">
+                        <h3>Notifications</h3>
+                        <p>Offers, meetups and order updates</p>
+                    </div>
                     <span class="pinned-badge">2</span>
                     <i class="fa-solid fa-chevron-right" style="color: #A61B14; font-size: 12px;"></i>
                 </div>
+
+                <!-- Chat List -->
                 <div class="chat-card unread" onclick="openChat('BINI mikha', 'BM')">
                     <div class="chat-avatar">BM</div>
-                    <div class="chat-body"><div class="chat-top"><h3>BINI mikha</h3><span class="chat-time">2m</span></div><p>Okay, 1:00 PM works for me!</p><span class="chat-tag">Purchase</span></div>
-                    <span class="
+                    <div class="chat-body">
+                        <div class="chat-top"><h3>BINI mikha</h3><span class="chat-time">2m</span></div>
+                        <p>Okay, 1:00 PM works for me!</p>
+                        <span class="chat-tag">Purchase</span>
+                    </div>
+                    <span class="chat-dot"></span>
+                </div>
+
+                <div class="chat-card unread" onclick="openChat('BINI aiah', 'BA')">
+                    <div class="chat-avatar">BA</div>
+                    <div class="chat-body">
+                        <div class="chat-top"><h3>BINI aiah</h3><span class="chat-time">15m</span></div>
+                        <p>Offered a Polo for your Barong Tagalog</p>
+                        <span class="chat-tag">Swap</span>
+                    </div>
+                    <span class="chat-dot"></span>
+                </div>
+
+                <div class="chat-card" onclick="openChat('BINI colet', 'BC')">
+                    <div class="chat-avatar">BC</div>
+                    <div class="chat-body">
+                        <div class="chat-top"><h3>BINI colet</h3><span class="chat-time">1h</span></div>
+                        <p>Thanks! See you at the gate.</p>
+                        <span class="chat-tag">Purchase</span>
+                    </div>
+                </div>
+
+                <div class="chat-card" onclick="openChat('BINI sheena', 'BS')">
+                    <div class="chat-avatar">BS</div>
+                    <div class="chat-body">
+                        <div class="chat-top"><h3>BINI sheena</h3><span class="chat-time">3h</span></div>
+                        <p>Can we meet on Thursday instead?</p>
+                        <span class="chat-tag">Swap</span>
+                    </div>
+                </div>
+
+                <div class="chat-card" onclick="openChat('BINI jhoanna', 'BJ')">
+                    <div class="chat-avatar">BJ</div>
+                    <div class="chat-body">
+                        <div class="chat-top"><h3>BINI jhoanna</h3><span class="chat-time">1d</span></div>
+                        <p>Item received, thank you!</p>
+                        <span class="chat-tag">Purchase</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- CHAT WINDOW VIEW -->
+        <div id="chatView" style="display: none; height: 100vh; flex-direction: column; background: #F7F7F7;">
+            <header class="chat-header">
+                <button class="back-btn" onclick="closeChat()"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="chat-header-info">
+                    <div class="chat-header-avatar" id="chatAvatar">BM</div>
+                    <h3 id="chatName">BINI mikha</h3>
+                </div>
+                <div style="width: 40px;"></div>
+            </header>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">Okay, 1:00 PM works for me!</div>
+                <div class="message sent">Great! See you at the UE Caloocan gate.</div>
+                <div class="message received">Perfect. I'll bring the Barong.</div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleEnter(event)">
+                <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav class="bottom-nav" id="bottomNav">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="notifications.html" class="nav-item"><i class="fa-regular fa-bell"></i><span>Notification</span></a>
+            <a href="add-listing.html" class="nav-item nav-add"><i class="fa-solid fa-plus"></i></a>
+            <a href="inbox.html" class="nav-item active"><i class="fa-regular fa-envelope"></i><span>Inbox</span></a>
+            <a href="profile.html" class="nav-item"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+        </nav>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
