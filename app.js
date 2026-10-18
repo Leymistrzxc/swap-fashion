@@ -5,6 +5,9 @@
 const SUPABASE_URL = 'https://nqxsktmultyevshibntr.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_EsafzasmBHFH6VSbsVY8Vw_HIfubHAo';
 
+// ⚠️ PASTE YOUR ACTUAL GOOGLE CLIENT ID HERE
+const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com';
+
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -25,7 +28,7 @@ function togglePassword() {
 }
 
 // ============================================
-// SIGN IN (Email)
+// EMAIL SIGN IN
 // ============================================
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
@@ -51,21 +54,95 @@ if (loginForm) {
 }
 
 // ============================================
-// GOOGLE SIGN IN (UE Gmail Only)
+// GOOGLE SIGN IN (UE RESTRICTED)
 // ============================================
 function signInWithGoogle() {
-    db.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-            // After successful login, send them to the Home page
-            redirectTo: 'https://leymistrzxc.github.io/swap-fashion/home.html'
-        }
-    }).then(({ data, error }) => {
-        if (error) {
-            alert('Google Sign-In failed: ' + error.message);
-            console.error(error);
-        }
+    if (!window.google) {
+        alert("Google script is still loading. Please wait a second and try again.");
+        return;
+    }
+
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleLoginResponse
     });
+
+    google.accounts.id.prompt(); 
+}
+
+async function handleGoogleLoginResponse(response) {
+    // Decode the Google token to get the email
+    const base64Url = response.credential.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    
+    const userPayload = JSON.parse(jsonPayload);
+    const email = userPayload.email;
+
+    // CHECK DOMAIN: If NOT @ue.edu.ph, show the Blocked Screen
+    if (!email || !email.endsWith('@ue.edu.ph')) {
+        showAccessBlockedModal(email);
+        return; 
+    }
+
+    // If valid UE email, proceed with Supabase Login
+    const dummyPassword = 'GoogleAuth_' + userPayload.sub;
+    
+    const { data: authData, error: authError } = await db.auth.signInWithPassword({
+        email: email,
+        password: dummyPassword
+    });
+
+    if (authError) {
+        // If they don't have an account yet, create one silently
+        if (authError.message.includes('Invalid login credentials')) {
+            const { data: signUpData, error: signUpError } = await db.auth.signUp({
+                email: email,
+                password: dummyPassword
+            });
+            
+            if (signUpError) {
+                alert("Error creating account: " + signUpError.message);
+                return;
+            }
+        } else {
+            alert("Login error: " + authError.message);
+            return;
+        }
+    }
+
+    // Success
+    localStorage.setItem('user', JSON.stringify({ email: email }));
+    window.location.href = 'home.html';
+}
+
+// Show the custom Google Error Modal
+function showAccessBlockedModal(blockedEmail) {
+    const modalHTML = `
+        <div id="googleBlockModal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px;">
+            <div style="background: #202124; color: #e8eaed; border-radius: 8px; width: 100%; max-width: 450px; overflow: hidden; font-family: 'Google Sans', Roboto, Arial, sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <div style="padding: 16px 24px; border-bottom: 1px solid #3c4043; display: flex; align-items: center; gap: 12px;">
+                    <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+                    <span style="font-size: 14px; font-weight: 500;">Sign in with Google</span>
+                </div>
+                <div style="padding: 32px 24px;">
+                    <h1 style="font-size: 28px; font-weight: 400; margin: 0 0 16px 0; color: #f28b82;">Access blocked: UE Portal can only be used within its organization</h1>
+                    <p style="font-size: 14px; line-height: 1.5; margin-bottom: 24px; color: #bdc1c6;">UE Portal is restricted to users within its organization. If you think you should have access, you can contact the developer.</p>
+                    <p style="font-size: 12px; color: #9aa0a6; margin-bottom: 24px;">If you are a developer of UE Portal, see error details.<br><strong>Error 403: org_internal</strong></p>
+                </div>
+                <div style="padding: 16px 24px; background: #303134; display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 28px; height: 28px; border-radius: 50%; background: #f28b82; color: #202124; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 12px;">
+                        ${blockedEmail.charAt(0).toUpperCase()}
+                    </div>
+                    <span style="font-size: 13px; color: #bdc1c6;">${blockedEmail}</span>
+                    <button onclick="document.getElementById('googleBlockModal').remove()" style="margin-left: auto; background: transparent; border: 1px solid #5f6368; color: #e8eaed; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
 // ============================================
@@ -294,7 +371,7 @@ function markAllRead() {
 }
 
 // ============================================
-// INBOX PAGE & CHAT LOGIC
+// INBOX & CHAT LOGIC
 // ============================================
 if (document.querySelector('.inbox-page')) {
     (async () => {
@@ -342,7 +419,6 @@ function sendMessage() {
     input.value = '';
     chatMessages.scrollTop = chatMessages.scrollHeight;
     
-    // Auto-reply simulation
     setTimeout(() => {
         const reply = document.createElement('div');
         reply.className = 'message received';
