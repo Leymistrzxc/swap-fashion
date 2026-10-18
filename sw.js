@@ -1,5 +1,5 @@
 // Swap Fashion - Service Worker
-const CACHE_NAME = 'swap-fashion-v1';
+const CACHE_NAME = 'swap-fashion-v2';
 const URLS_TO_CACHE = [
     '/swap-fashion/',
     '/swap-fashion/index.html',

@@ -24,7 +24,9 @@ function togglePassword() {
     }
 }
 
-// SIGN IN
+// ============================================
+// SIGN IN (Email)
+// ============================================
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', async function(e) {
@@ -34,7 +36,9 @@ if (loginForm) {
         const submitBtn = document.querySelector('.btn-primary');
         submitBtn.textContent = 'Signing in...';
         submitBtn.disabled = true;
+        
         const { data, error } = await db.auth.signInWithPassword({ email, password });
+        
         submitBtn.textContent = 'Sign in';
         submitBtn.disabled = false;
         if (error) {
@@ -46,17 +50,36 @@ if (loginForm) {
     });
 }
 
+// ============================================
+// GOOGLE SIGN IN (UE Gmail Only)
+// ============================================
 function signInWithGoogle() {
-    alert('Google Sign-In is coming soon! Please use email login for now.');
+    db.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            // After successful login, send them to the Home page
+            redirectTo: 'https://leymistrzxc.github.io/swap-fashion/home.html'
+        }
+    }).then(({ data, error }) => {
+        if (error) {
+            alert('Google Sign-In failed: ' + error.message);
+            console.error(error);
+        }
+    });
 }
 
+// ============================================
+// SIGN OUT
+// ============================================
 async function signOut() {
     await db.auth.signOut();
     localStorage.removeItem('user');
     window.location.href = 'index.html';
 }
 
+// ============================================
 // HOME PAGE
+// ============================================
 if (document.querySelector('.home-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -74,10 +97,11 @@ if (document.querySelector('.home-page')) {
             cat.classList.add('active');
         });
     });
-    // (The item card clicks are now handled directly in the HTML!)
 }
 
+// ============================================
 // PROFILE PAGE
+// ============================================
 if (document.querySelector('.profile-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -99,7 +123,9 @@ if (document.querySelector('.profile-page')) {
     }
 }
 
+// ============================================
 // CART PAGE
+// ============================================
 if (document.querySelector('.cart-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -193,7 +219,9 @@ function continueToSwap() {
     window.location.href = 'checkout.html';
 }
 
+// ============================================
 // CHECKOUT PAGE
+// ============================================
 if (document.querySelector('.checkout-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -239,7 +267,9 @@ function placeOrder() {
     setTimeout(() => window.location.href = 'home.html', 1200);
 }
 
+// ============================================
 // NOTIFICATIONS PAGE
+// ============================================
 if (document.querySelector('.notifications-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -263,7 +293,9 @@ function markAllRead() {
     });
 }
 
-// INBOX PAGE
+// ============================================
+// INBOX PAGE & CHAT LOGIC
+// ============================================
 if (document.querySelector('.inbox-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -278,7 +310,57 @@ if (document.querySelector('.inbox-page')) {
     });
 }
 
+function openChat(name, initials) {
+    document.getElementById('inboxListView').style.display = 'none';
+    document.getElementById('bottomNav').style.display = 'none';
+    document.getElementById('chatView').style.display = 'flex';
+    
+    document.getElementById('chatName').textContent = name;
+    document.getElementById('chatAvatar').textContent = initials;
+    
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function closeChat() {
+    document.getElementById('chatView').style.display = 'none';
+    document.getElementById('inboxListView').style.display = 'block';
+    document.getElementById('bottomNav').style.display = 'flex';
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (text === '') return;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const newMessage = document.createElement('div');
+    newMessage.className = 'message sent';
+    newMessage.textContent = text;
+    
+    chatMessages.appendChild(newMessage);
+    input.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    // Auto-reply simulation
+    setTimeout(() => {
+        const reply = document.createElement('div');
+        reply.className = 'message received';
+        reply.textContent = "Got it! I'll let you know soon. 😊";
+        chatMessages.appendChild(reply);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+}
+
+function handleEnter(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+// ============================================
 // ADD LISTING PAGE
+// ============================================
 if (document.querySelector('.add-listing-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -304,7 +386,9 @@ function submitItem(e) {
     setTimeout(() => { window.location.href = 'home.html'; }, 1000);
 }
 
+// ============================================
 // ITEM DETAILS PAGE
+// ============================================
 if (document.querySelector('.item-details-page')) {
     (async () => {
         const { data: { session } } = await db.auth.getSession();
@@ -331,4 +415,15 @@ if (document.querySelector('.item-details-page')) {
 function selectSize(btn) {
     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+}
+
+// ============================================
+// PWA SERVICE WORKER
+// ============================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/swap-fashion/sw.js')
+            .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+            .catch(err => console.log('❌ Service Worker error:', err));
+    });
 }
