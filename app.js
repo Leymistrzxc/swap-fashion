@@ -74,13 +74,7 @@ if (document.querySelector('.home-page')) {
             cat.classList.add('active');
         });
     });
-
-    document.querySelectorAll('.item-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const itemName = card.querySelector('h3').textContent;
-            alert('Opening: ' + itemName + '\n\nItem detail page coming soon!');
-        });
-    });
+    // (The item card clicks are now handled directly in the HTML!)
 }
 
 // PROFILE PAGE
@@ -284,13 +278,57 @@ if (document.querySelector('.inbox-page')) {
     });
 }
 
-// ============================================
-// PWA SERVICE WORKER
-// ============================================
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/swap-fashion/sw.js')
-            .then(reg => console.log('✅ Service Worker registered:', reg.scope))
-            .catch(err => console.log('❌ Service Worker error:', err));
-    });
+// ADD LISTING PAGE
+if (document.querySelector('.add-listing-page')) {
+    (async () => {
+        const { data: { session } } = await db.auth.getSession();
+        if (!session) { window.location.href = 'index.html'; return; }
+    })();
+}
+
+function setListingType(type, btn) {
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const priceGroup = document.getElementById('priceGroup');
+    if (type === 'buy') {
+        priceGroup.style.display = 'block';
+    } else {
+        priceGroup.style.display = 'none';
+    }
+}
+
+function submitItem(e) {
+    e.preventDefault();
+    alert('Listing posted successfully!\n\nIt will now appear on the Home page.');
+    setTimeout(() => { window.location.href = 'home.html'; }, 1000);
+}
+
+// ITEM DETAILS PAGE
+if (document.querySelector('.item-details-page')) {
+    (async () => {
+        const { data: { session } } = await db.auth.getSession();
+        if (!session) { window.location.href = 'index.html'; return; }
+    })();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemName = urlParams.get('name');
+    const itemPrice = urlParams.get('price');
+    const itemType = urlParams.get('type');
+
+    if (itemName) {
+        document.getElementById('itemTitle').textContent = decodeURIComponent(itemName);
+        document.getElementById('itemPrice').textContent = itemPrice ? '₱' + itemPrice : 'Open to swap';
+        
+        if (itemType === 'swap') {
+            document.getElementById('itemBadge').className = 'badge swap';
+            document.getElementById('itemBadge').textContent = 'Swap';
+            document.getElementById('itemPrice').style.fontSize = '16px';
+        }
+    }
+}
+
+function selectSize(btn) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 }

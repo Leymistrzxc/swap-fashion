@@ -7,9 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#B3222A">
+    <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
     <div class="phone-container home-page">
+
         <header class="home-header">
             <div class="header-top">
                 <div>
@@ -26,12 +31,14 @@
                 <input type="text" placeholder="Search clothes on campus">
             </div>
         </header>
+
         <main class="home-content">
             <div class="banner">
                 <h3>Swap or buy pre-loved</h3>
                 <p>UE students only</p>
                 <button class="banner-btn">Explore</button>
             </div>
+
             <section class="section">
                 <div class="section-header">
                     <h2>Category</h2>
@@ -45,31 +52,36 @@
                     <div class="category add-new"><i class="fa-solid fa-plus"></i><span>Add</span></div>
                 </div>
             </section>
+
             <section class="section">
                 <div class="section-header">
                     <h2>Fresh picks for you</h2>
                     <a href="#" class="see-all">See all</a>
                 </div>
+                
                 <div class="items-grid">
-                    <div class="item-card">
+                    <div class="item-card" onclick="window.location.href='item-details.html?name=Black%20Blazer&price=350&type=buy'">
                         <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Black Blazer</h3>
                         <p class="item-meta">Formal · Size M</p>
                         <p class="item-price">₱350</p>
                     </div>
-                    <div class="item-card">
+                    
+                    <div class="item-card" onclick="window.location.href='item-details.html?name=Barong%20Tagalog&type=swap'">
                         <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Barong Tagalog</h3>
                         <p class="item-meta">Formal · Size L</p>
                         <p class="item-price swap-text">Open to swap</p>
                     </div>
-                    <div class="item-card">
+                    
+                    <div class="item-card" onclick="window.location.href='item-details.html?name=Pleated%20Skirt&price=220&type=buy'">
                         <div class="item-img"><span class="badge buy">Buy</span><i class="fa-solid fa-person-dress item-icon"></i></div>
                         <h3>Pleated Skirt</h3>
                         <p class="item-meta">Semi-formal · Size S</p>
                         <p class="item-price">₱220</p>
                     </div>
-                    <div class="item-card">
+                    
+                    <div class="item-card" onclick="window.location.href='item-details.html?name=Basketball%20Jersey&type=swap'">
                         <div class="item-img"><span class="badge swap">Swap</span><i class="fa-solid fa-shirt item-icon"></i></div>
                         <h3>Basketball Jersey</h3>
                         <p class="item-meta">Sportswear · Size L</p>
@@ -78,14 +90,16 @@
                 </div>
             </section>
         </main>
+
         <nav class="bottom-nav">
             <a href="home.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
             <a href="notifications.html" class="nav-item"><i class="fa-regular fa-bell"></i><span>Notification</span></a>
-            <a href="#" class="nav-item nav-add" onclick="alert('Add listing coming soon!'); return false;"><i class="fa-solid fa-plus"></i></a>
+            <a href="add-listing.html" class="nav-item nav-add"><i class="fa-solid fa-plus"></i></a>
             <a href="inbox.html" class="nav-item"><i class="fa-regular fa-envelope"></i><span>Inbox</span></a>
             <a href="profile.html" class="nav-item"><i class="fa-regular fa-user"></i><span>Profile</span></a>
         </nav>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>

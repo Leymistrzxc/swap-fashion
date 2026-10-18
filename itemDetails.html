@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Fashion - Item Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#B3222A">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="phone-container item-details-page">
+
+        <!-- Header (Back button + Cart) -->
+        <header class="details-header">
+            <button class="back-btn white-btn" onclick="window.location.href='home.html'">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="cart-btn white-btn" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge">2</span>
+            </button>
+        </header>
+
+        <main class="details-content">
+            
+            <!-- Large Image Area -->
+            <div class="details-image-area">
+                <span class="badge buy" id="itemBadge">Buy</span>
+                <i class="fa-solid fa-shirt details-icon"></i>
+            </div>
+
+            <!-- Product Info -->
+            <div class="details-info">
+                <div class="details-title-row">
+                    <h1 id="itemTitle">Black Blazer</h1>
+                    <p class="details-price" id="itemPrice">₱350</p>
+                </div>
+                
+                <p class="details-category" id="itemCategory">Formal Attire</p>
+                
+                <div class="details-seller">
+                    <div class="seller-avatar">JD</div>
+                    <div class="seller-info">
+                        <h4>Juan Dela Cruz</h4>
+                        <p><i class="fa-solid fa-star" style="color: #E8A100;"></i> 4.8 · UE Caloocan student</p>
+                    </div>
+                    <button class="message-btn" onclick="window.location.href='inbox.html'">Message</button>
+                </div>
+
+                <div class="details-divider"></div>
+
+                <h3 class="details-section-title">Description</h3>
+                <p class="details-desc">Slightly used, great condition. No flaws. Meetup at UE Caloocan gate.</p>
+
+                <h3 class="details-section-title">Size</h3>
+                <div class="size-picker">
+                    <button class="size-btn" onclick="selectSize(this)">S</button>
+                    <button class="size-btn active" onclick="selectSize(this)">M</button>
+                    <button class="size-btn" onclick="selectSize(this)">L</button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Bottom Action Bar -->
+        <div class="details-action-bar">
+            <button class="btn-swap-offer" onclick="alert('Swap offer coming soon!')">
+                <i class="fa-solid fa-arrows-rotate"></i> Offer Swap
+            </button>
+            <button class="btn-add-cart" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+            </button>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
